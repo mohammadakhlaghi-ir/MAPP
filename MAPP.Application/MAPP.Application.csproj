@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MAPP.Domain\MAPP.Domain.csproj" />
+    <ProjectReference Include="..\MAPP.Infrastructure\MAPP.Infrastructure.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

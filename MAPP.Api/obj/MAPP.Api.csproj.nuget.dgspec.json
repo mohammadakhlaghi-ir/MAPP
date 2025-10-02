@@ -60,6 +60,16 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[9.0.6, )"
             }
           },
           "imports": [
@@ -115,6 +125,9 @@
             "projectReferences": {
               "D:\\project\\MAPP\\MAPP.Domain\\MAPP.Domain.csproj": {
                 "projectPath": "D:\\project\\MAPP\\MAPP.Domain\\MAPP.Domain.csproj"
+              },
+              "D:\\project\\MAPP\\MAPP.Infrastructure\\MAPP.Infrastructure.csproj": {
+                "projectPath": "D:\\project\\MAPP\\MAPP.Infrastructure\\MAPP.Infrastructure.csproj"
               }
             }
           }
@@ -247,8 +260,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\project\\MAPP\\MAPP.Application\\MAPP.Application.csproj": {
-                "projectPath": "D:\\project\\MAPP\\MAPP.Application\\MAPP.Application.csproj"
+              "D:\\project\\MAPP\\MAPP.Domain\\MAPP.Domain.csproj": {
+                "projectPath": "D:\\project\\MAPP\\MAPP.Domain\\MAPP.Domain.csproj"
               }
             }
           }
@@ -280,6 +293,12 @@
               "version": "[9.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.9, )"
             }

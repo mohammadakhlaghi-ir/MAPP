@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\project\\MAPP\\MAPP.Api\\MAPP.Api.csproj": {}
+    "D:\\project\\MAPP\\mapp.api\\MAPP.Api.csproj": {}
   },
   "projects": {
-    "D:\\project\\MAPP\\MAPP.Api\\MAPP.Api.csproj": {
+    "D:\\project\\MAPP\\mapp.api\\MAPP.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\project\\MAPP\\MAPP.Api\\MAPP.Api.csproj",
+        "projectUniqueName": "D:\\project\\MAPP\\mapp.api\\MAPP.Api.csproj",
         "projectName": "MAPP.Api",
-        "projectPath": "D:\\project\\MAPP\\MAPP.Api\\MAPP.Api.csproj",
+        "projectPath": "D:\\project\\MAPP\\mapp.api\\MAPP.Api.csproj",
         "packagesPath": "C:\\Users\\Shadow\\.nuget\\packages\\",
-        "outputPath": "D:\\project\\MAPP\\MAPP.Api\\obj\\",
+        "outputPath": "D:\\project\\MAPP\\mapp.api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

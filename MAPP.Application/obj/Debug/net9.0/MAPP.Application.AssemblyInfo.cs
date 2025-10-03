@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MAPP.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ddae3caf06888ab9844f569f2ba63c57a81972ae")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+675a3ba1b21fe2fe5abdb7834d81fe676ba4364d")]
 [assembly: System.Reflection.AssemblyProductAttribute("MAPP.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MAPP.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

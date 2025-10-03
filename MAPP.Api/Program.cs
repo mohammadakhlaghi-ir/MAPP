@@ -1,12 +1,31 @@
 using Microsoft.EntityFrameworkCore;
 using MAPP.Infrastructure.Persistence;
 using MAPP.Infrastructure.Persistence.Seed;
+using MAPP.Application.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-);
+{
+    var encryptionKey = builder.Configuration["EncryptionKey"] ?? "12345678901234567890123456789012";
+    var encryptionService = new AesEncryptionService(encryptionKey);
+
+    var dbSettings = builder.Configuration.GetSection("DatabaseSettings");
+    var serverName = dbSettings["ServerName"];
+    var databaseName = dbSettings["DatabaseName"];
+    var userName = dbSettings["UserName"];
+    var encryptedPassword = dbSettings["Password"];
+    var encrypt = dbSettings.GetValue<bool>("Encrypt");
+    var trustServerCertificate = dbSettings.GetValue<bool>("TrustServerCertificate");
+
+    var password = encryptionService.Decrypt(encryptedPassword!);
+
+    var connectionString =
+        $"Server={serverName};Database={databaseName};User Id={userName};" +
+        $"Password={password};Encrypt={encrypt};TrustServerCertificate={trustServerCertificate};";
+
+    options.UseSqlServer(connectionString);
+});
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

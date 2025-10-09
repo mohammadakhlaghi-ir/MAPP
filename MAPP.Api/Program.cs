@@ -1,7 +1,11 @@
-using Microsoft.EntityFrameworkCore;
+using MAPP.Application.DTOs;
+using MAPP.Application.Interfaces;
+using MAPP.Application.Mapping;
+using MAPP.Application.Security;
+using MAPP.Application.Services;
 using MAPP.Infrastructure.Persistence;
 using MAPP.Infrastructure.Persistence.Seed;
-using MAPP.Application.Security;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,14 +35,45 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+#region Maps
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<LogProfile>();
+});
+#endregion
+
+#region
+builder.Services.AddScoped<ILogService, LogService>();
+#endregion
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    dbContext.SeedAdminUser();
-}
+    var logService = scope.ServiceProvider.GetRequiredService<ILogService>();
 
+    try
+    {
+        dbContext.SeedAdminUser();
+
+        await logService.AddLog(new AddLogDto
+        {
+            Title = "Application Started",
+            Description = $"App started successfully at {DateTime.Now}"
+        });
+    }
+    catch (Exception ex)
+    {
+        await logService.AddLog(new AddLogDto
+        {
+            Title = "Startup Error",
+            Description = ex.ToString()
+        });
+
+        throw;
+    }
+}
 
 if (app.Environment.IsDevelopment())
 {

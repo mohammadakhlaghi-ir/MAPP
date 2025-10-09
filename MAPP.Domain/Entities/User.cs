@@ -19,7 +19,7 @@ namespace MAPP.Domain.Entities
         public bool IsDeleted { get; set; } = false;
         public bool Enabled { get; set; } = true;
         [Required]
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
+        public DateTime CreateDate { get; set; } = DateTime.Now;
         [Required]
         public string Creator { get; set; } = "System";
         public DateTime? ModifyDate { get; set; }

@@ -3,11 +3,6 @@ using MAPP.Application.DTOs;
 using MAPP.Application.Interfaces;
 using MAPP.Domain.Entities;
 using MAPP.Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MAPP.Application.Services
 {

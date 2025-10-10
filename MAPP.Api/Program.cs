@@ -1,8 +1,8 @@
+using MAPP.Application;
 using MAPP.Application.DTOs;
 using MAPP.Application.Interfaces;
 using MAPP.Application.Mapping;
 using MAPP.Application.Security;
-using MAPP.Application.Services;
 using MAPP.Infrastructure.Persistence;
 using MAPP.Infrastructure.Persistence.Seed;
 using Microsoft.EntityFrameworkCore;
@@ -35,16 +35,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-#region Maps
-builder.Services.AddAutoMapper(cfg =>
-{
-    cfg.AddProfile<LogProfile>();
-});
-#endregion
-
-#region
-builder.Services.AddScoped<ILogService, LogService>();
-#endregion
+builder.Services.AddApplicationMappings();
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 

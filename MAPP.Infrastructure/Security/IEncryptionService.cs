@@ -1,4 +1,4 @@
-namespace MAPP.Application.Interfaces
+namespace MAPP.Infrastructure.Security
 {
     public interface IEncryptionService
     {

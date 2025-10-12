@@ -2,7 +2,7 @@
 using MAPP.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MAPP.Application
+namespace MAPP.Application.Extensions
 {
     public static class ServiceExtensions
     {

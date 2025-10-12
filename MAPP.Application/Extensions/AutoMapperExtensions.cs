@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MAPP.Application.Mapping;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace MAPP.Application.Mapping
+namespace MAPP.Application.Extensions
 {
     public static class AutoMapperExtensions
     {

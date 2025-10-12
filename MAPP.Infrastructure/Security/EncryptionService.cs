@@ -1,14 +1,12 @@
-
 using System.Security.Cryptography;
 using System.Text;
-using MAPP.Application.Interfaces;
 
-namespace MAPP.Application.Security
+namespace MAPP.Infrastructure.Security
 {
-    public class AesEncryptionService : IEncryptionService
+    public class EncryptionService : IEncryptionService
     {
         private readonly byte[] _key;
-        public AesEncryptionService(string key)
+        public EncryptionService(string key)
         {
             if (string.IsNullOrEmpty(key)) throw new ArgumentException("Key cannot be null");
             if (key.Length != 16 && key.Length != 24 && key.Length != 32)

@@ -4,7 +4,7 @@ using MAPP.Application.Interfaces;
 using MAPP.Domain.Entities;
 using MAPP.Infrastructure.Persistence;
 
-namespace MAPP.Application.Services
+namespace MAPP.Infrastructure.Services
 {
     public class LogService(AppDbContext context, IMapper mapper) : ILogService
     {

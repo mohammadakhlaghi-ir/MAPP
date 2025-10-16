@@ -1,12 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="15.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MAPP.Domain\MAPP.Domain.csproj" />
-    <ProjectReference Include="..\MAPP.Infrastructure\MAPP.Infrastructure.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

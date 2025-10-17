@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MAPP.Application.DTOs;
 using MAPP.Application.Interfaces;
+using MAPP.Application.Utilities;
 using MAPP.Domain.Entities;
 using MAPP.Infrastructure.Persistence;
 
@@ -14,6 +15,7 @@ namespace MAPP.Infrastructure.Services
         public async Task AddLog(AddLogDto logDto)
         {
             var log = _mapper.Map<Log>(logDto);
+            log.Crc = CrcHelper.ComputeCrc($"{log.Title}|{log.Description}|{log.DateTime:O}");
             _context.Logs.Add(log);
             await _context.SaveChangesAsync();
         }

@@ -1,3 +1,5 @@
+using MAPP.Application.Utilities;
+using MAPP.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace MAPP.Infrastructure.Persistence.Seed
@@ -10,7 +12,7 @@ namespace MAPP.Infrastructure.Persistence.Seed
 
             if (!dbContext.Users.Any())
             {
-                var adminUser = new Domain.Entities.User
+                var adminUser = new User
                 {
                     Name = "admin",
                     Password = "Admin@123",
@@ -19,6 +21,10 @@ namespace MAPP.Infrastructure.Persistence.Seed
                     LastName = "Admin",
                     Creator = "System"
                 };
+
+                adminUser.Crc = CrcHelper.ComputeCrc($"{adminUser.Name}|{adminUser.Email}|{adminUser.FirstName}" +
+                    $"|{adminUser.LastName}|0|1|{adminUser.CreateDate:O}|{adminUser.Creator}|{adminUser.ModifyDate:O}" +
+                    $"|{adminUser.Modifier}");
 
                 dbContext.Users.Add(adminUser);
                 dbContext.SaveChanges();

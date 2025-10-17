@@ -52,11 +52,11 @@ namespace MAPP.Infrastructure.Migrations
 
             modelBuilder.Entity("MAPP.Domain.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
 
                     b.Property<string>("Crc")
                         .IsRequired()
@@ -87,10 +87,10 @@ namespace MAPP.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Modifier")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("Modifier")
+                        .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("ModifyDate")
+                    b.Property<DateTime>("ModifyDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -101,7 +101,7 @@ namespace MAPP.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("Users");
                 });

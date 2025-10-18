@@ -50,6 +50,27 @@ namespace MAPP.Infrastructure.Migrations
                     b.ToTable("Logs");
                 });
 
+            modelBuilder.Entity("MAPP.Domain.Entities.Setting", b =>
+                {
+                    b.Property<byte>("ID")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("Crc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifyDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Settings");
+                });
+
             modelBuilder.Entity("MAPP.Domain.Entities.User", b =>
                 {
                     b.Property<long>("ID")

@@ -7,5 +7,6 @@ namespace MAPP.Infrastructure.Persistence
     {
         public DbSet<User> Users => Set<User>();
         public DbSet<Log> Logs => Set<Log>();
+        public DbSet<Setting> Settings => Set<Setting>();
     }
 }

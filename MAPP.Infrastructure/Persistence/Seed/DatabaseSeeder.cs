@@ -6,11 +6,11 @@ namespace MAPP.Infrastructure.Persistence.Seed
 {
     public static class DatabaseSeeder
     {
-        public static void SeedAdminUser(this AppDbContext dbContext)
+        public static void SeedAdminUser(this AppDbContext context)
         {
-            dbContext.Database.Migrate();
+            context.Database.Migrate();
 
-            if (!dbContext.Users.Any())
+            if (!context.Users.Any())
             {
                 var adminUser = new User
                 {
@@ -26,8 +26,16 @@ namespace MAPP.Infrastructure.Persistence.Seed
                     $"|{adminUser.LastName}|0|1|{adminUser.CreateDate:O}|{adminUser.Creator}|{adminUser.ModifyDate:O}" +
                     $"|{adminUser.Modifier}");
 
-                dbContext.Users.Add(adminUser);
-                dbContext.SaveChanges();
+                context.Users.Add(adminUser);
+                context.SaveChanges();
+            }
+
+            if (!context.Settings.Any())
+            {
+                var setting = new Setting();
+                setting.Crc = CrcHelper.ComputeCrc($"{setting.Language}|{setting.ModifyDate:O}");
+                context.Settings.Add(setting);
+                context.SaveChanges();
             }
         }
     }

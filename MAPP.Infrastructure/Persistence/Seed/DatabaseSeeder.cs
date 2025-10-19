@@ -18,22 +18,80 @@ namespace MAPP.Infrastructure.Persistence.Seed
                     Password = "Admin@123",
                     Email = "admin@example.com",
                     FirstName = "System",
-                    LastName = "Admin",
-                    Creator = "System"
+                    LastName = "Admin"
                 };
 
                 adminUser.Crc = CrcHelper.ComputeCrc($"{adminUser.Name}|{adminUser.Email}|{adminUser.FirstName}" +
-                    $"|{adminUser.LastName}|0|1|{adminUser.CreateDate:O}|{adminUser.Creator}|{adminUser.ModifyDate:O}" +
-                    $"|{adminUser.Modifier}");
+                    $"|{adminUser.LastName}|{adminUser.IsDeleted}|{adminUser.Enabled}|{adminUser.CreateDate:O}" +
+                    $"|{adminUser.Creator}|{adminUser.ModifyDate:O}" + $"|{adminUser.Modifier}");
 
                 context.Users.Add(adminUser);
                 context.SaveChanges();
             }
 
+            if (!context.Languages.Any())
+            {
+                var farsiLanguage = new Language
+                {
+                    Name = "fa",
+                    Description = "Farsi"
+                };
+
+                farsiLanguage.Crc = CrcHelper.ComputeCrc(
+                    $"{farsiLanguage.Name}|" +
+                    $"{farsiLanguage.Description}|{farsiLanguage.CreateDate:O}|{farsiLanguage.Creator}|" +
+                    $"{farsiLanguage.ModifyDate:O}|{farsiLanguage.Modifier}");
+
+                var englishLanguage = new Language
+                {
+                    Name = "en",
+                    Description = "English"
+                };
+
+                englishLanguage.Crc = CrcHelper.ComputeCrc(
+                    $"{englishLanguage.Name}|" +
+                    $"{englishLanguage.Description}|{englishLanguage.CreateDate:O}|{englishLanguage.Creator}|" +
+                    $"{englishLanguage.ModifyDate:O}|{englishLanguage.Modifier}");
+
+                context.Languages.AddRange(farsiLanguage, englishLanguage);
+                context.SaveChanges();
+            }
+
             if (!context.Settings.Any())
             {
-                var setting = new Setting();
-                setting.Crc = CrcHelper.ComputeCrc($"{setting.Language}|{setting.ModifyDate:O}");
+                int defaultLanguageID = 0;
+
+                var existFarsiLanguage = context.Languages.FirstOrDefault(l => l.Name == "fa");
+
+                if (existFarsiLanguage == null)
+                {
+                    var farsiLanguage = new Language
+                    {
+                        Name = "fa",
+                        Description = "Farsi"
+                    };
+
+                    farsiLanguage.Crc = CrcHelper.ComputeCrc($"{farsiLanguage.Name}|" +
+                        $"{farsiLanguage.Description}|{farsiLanguage.CreateDate:O}|{farsiLanguage.Creator}|" +
+                        $"{farsiLanguage.ModifyDate:O}|{farsiLanguage.Modifier}");
+
+                    context.Languages.AddRange(farsiLanguage);
+                    context.SaveChanges();
+
+                    defaultLanguageID = farsiLanguage.ID;
+                }
+                else
+                {
+                    defaultLanguageID = existFarsiLanguage.ID;
+                }
+
+                var setting = new Setting
+                {
+                    LanguageID = defaultLanguageID,                    
+                };
+
+                setting.Crc = CrcHelper.ComputeCrc($"{setting.LanguageID}|{setting.ModifyDate:O}");
+
                 context.Settings.Add(setting);
                 context.SaveChanges();
             }

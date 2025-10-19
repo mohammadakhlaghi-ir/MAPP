@@ -14,7 +14,7 @@ namespace MAPP.Domain.Entities
         public bool IsDeleted { get; set; } = false;
         public bool Enabled { get; set; } = true;
         public DateTime CreateDate { get; set; } = DateTime.Now;
-        public string Creator { get; set; } = "System";
+        public uint Creator { get; set; } = 0;
         public DateTime ModifyDate { get; set; } = DateTime.Now;
         public uint Modifier { get; set; } = 0;
         public string Crc { get; set; } = "";

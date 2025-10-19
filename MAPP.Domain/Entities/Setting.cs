@@ -6,8 +6,12 @@ namespace MAPP.Domain.Entities
     {
         [Key]
         public byte ID { get; set; }
-        public string Language { get; set; } = "en";
+        public int LanguageID { get; set; }
         public string Crc { get; set; } = "";
         public DateTime ModifyDate { get; set; } = DateTime.Now;
+
+        #region navigations
+        public Language Language { get; set; } = null!;
+        #endregion
     }
 }

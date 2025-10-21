@@ -1,0 +1,23 @@
+﻿using AutoMapper;
+using ShadowApp.Application.DTOs;
+using ShadowApp.Application.Interfaces;
+using ShadowApp.Application.Utilities;
+using ShadowApp.Domain.Entities;
+using ShadowApp.Infrastructure.Persistence;
+
+namespace ShadowApp.Infrastructure.Services
+{
+    public class LogService(AppDbContext context, IMapper mapper) : ILogService
+    {
+        private readonly AppDbContext _context = context;
+        private readonly IMapper _mapper = mapper;
+
+        public async Task AddLog(AddLogDto logDto)
+        {
+            var log = _mapper.Map<Log>(logDto);
+            log.Crc = CrcHelper.ComputeCrc($"{log.Title}|{log.Description}|{log.DateTime:O}");
+            _context.Logs.Add(log);
+            await _context.SaveChangesAsync();
+        }
+    }
+}
